@@ -6,8 +6,7 @@
      <!--logo-->
      <link rel="shortcut icon" href="assets/fclogo.png"/>
      
-     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-     <meta name="theme-color" content="#000000" />
+     <meta name="viewport" content="width=device-width,user-scalable=no"/>
      <meta
       name="description"
       content="Buy,Shop,Browse and Order Pet Products"

@@ -63,6 +63,7 @@ include('db.php');
                                     <td class='text-center'>$prod_description</td>
                                     <td class='text-center'>$prod_price</td>
                                     <td class='text-center'>$prod_stock</td>
+                                    <td class='text-center'>
                                         <span>
                                             <a href='#'>
                                                 <i class='fa fa-edit editcon' data-toggle='modal' data-target='#edit$prod_id' style='' aria-hidden='true'></i>
@@ -172,7 +173,7 @@ include('db.php');
                         $prod_id = $row['prod_id'];
                         echo "
 
-                    <div id='$id' class='modal fade' role='dialog'>
+                    <div id='$prod_id' class='modal fade' role='dialog'>
                     <div class='modal-dialog'>
 
                         <!-- Modal content-->
@@ -234,34 +235,34 @@ include('db.php');
                                 <label>Category</label>
                                 <select class='form-control' name='category_id'>
                                     <option value=''>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                     <option value='Options'>Select Category</options>
+                                    <option value='Options'>Accessories</options>
+                                    <option value='Options'>Clothes</options>
+                                    <option value='Options'>Foods</options>
+                                    <option value='Options'>Hygiene</options>
+                                     <option value='Options'>Toys</options>
                                  </select>   
                                 </div>
 
                                 <div class='form-group' id='forminput'>
                                     <label>Image</label>
-                                    <input type='file' name='image' class='form-control' required>
+                                    <input type='file' name='prod_image' class='form-control' required>
                                     <img src = 'images/$image' style='width:50px; height:50px'>
                                 </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Name</label>
-                                    <input type='text' name='name' class='form-control' value='$name'>
+                                    <input type='text' name='prod_name' class='form-control' value='$prod_name'>
                                 </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Description</label>
-                                    <input type='text' name='description' class='form-control' value='$description'>
+                                    <input type='text' name='prod_description' class='form-control' value='$prod_description'>
                                 </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Price</label>
-                                    <input type='number' name='price' class='form-control' value='$price'>
+                                    <input type='number' name='prod_price' class='form-control' value='$prod_price'>
                                 </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Stock</label>
-                                    <input type='text' name='stock' class='form-control' value='$stock'>
+                                    <input type='text' name='prod_stock' class='form-control' value='$prod_stock'>
                                 </div>
                                 
                                 
