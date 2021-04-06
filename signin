@@ -1,0 +1,19 @@
+
+session_start();
+require './admin/db.php';
+if(isset($_POST['loginbtn'])) {
+    $stmt = $con->prepare('select * from account where username = :username');
+	$stmt->bindValue('username', $_POST['username']);
+	$stmt->execute();
+	$user = $stmt->fetch(PDO::FETCH_OBJ);
+    if($user != NULL) {
+        if (password_verify($_POST['password'], $user->password)){
+            $_SESSION['email'] = $_POST['email'];
+            header('location:welcome.php');
+        } else {
+            $error = 'Account Invalid';
+        }
+    } else {
+        $error = 'Account Invalid';
+    }
+}

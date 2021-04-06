@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family:'Trebuchet MS';
+  }
+  html,
+  body{
+    height: 100%;
+  }
+
+#modal-head{
+    background-color: royalblue;
+    color: #fff;
+}
+#tableboot{
+    background-color: royalblue;
+    color: #fff;
+
+}
+
+#forminput input{
+    outline: none;
+    border: none;
+    color: #2C3E50;
+}
+#forminput input:hover{
+  border-bottom: 3px solid royalblue;
+  outline: none;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+}
+
+#sidebar-toggle{
+    display: none;
+}
+  .sidebar{
+      height: 100%;
+      width: 12.6%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      border:none;
+      border-bottom: 1px solid #9e9e9e;
+      outline: none;
+      box-shadow: 0 10px 10px rgba(0,0,0,0.10);
+      padding: 1rem;
+      background-color: royalblue;
+      color:#fff;
+      transition: width 500ms;
+  }
+.sidebar-header .logo{
+   
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.sidebar-header .logo img{
+    height: 10%;
+    width: 15%;
+}
+.sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    padding: 0rem 1 rem;
+}
+
+.sidebar-links{
+    padding: 1rem;
+}
+
+.sidebar-links li{
+    margin-bottom: 1rem;
+
+}
+
+
+.sidebar a{
+    color: #fff;
+   
+}
+
+.sidebar a:hover{
+    color:lightblue;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    width: 100%;
+}
+.sidebar-links a span:last-child {
+    padding-left: .6rem;
+
+}
+#sidebar-toggle:checked ~ .sidebar {
+    width:5%;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header .logo,
+#sidebar-toggle:checked ~ .sidebar-header img,
+#sidebar-toggle:checked ~ .sidebar li span:last-child
+{
+    display: none;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li{
+
+    display: flex;
+    justify-content: center;
+
+}
+
+#sidebar-toggle:checked ~ .main-content{
+    margin-left: 5%;
+}
+.main-content{
+    position: relative;
+    margin-left: 17rem;
+    transition: margin-left 500ms;
+}
+.searchwrapper{
+    display: flex;
+    align-items: center;
+}
+.searchwrapper i{
+    color: #fff;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+}
+.searchwrapper input{
+    border:0;
+    outline:0;
+    padding: 0.5rem;
+    height: 10%;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    z-index:100;
+    width: 100%;
+    background: royalblue;
+    height: 10%;
+    padding: 0rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.20);
+    
+}
+
+main{
+    margin-top: 5rem;
+    min-height: 90vh;
+    padding: 1rem;
+}
+
+
+.table{
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+
+.table .generatepdf{
+    align-items: right;
+    background-color: tomato;
+    color: #fff;
+    outline: none;
+} 
+.table .generatepdf:hover{
+    align-items: right;
+    background-color:darkgoldenrod;
+    color: #fff;
+} 
+.table-res{
+    
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid royalblue;
+    
+  }
+.table-res th{
+    padding: 2rem;
+    text-align: center;
+  }
+.table-res td{
+    padding: 2rem;
+    
+  }
+.table-res td .editcon{
+    color:seagreen;
+}
+.table-res td .editcon:hover{
+    color:lightgreen;
+}
+.table-res td .deletecon{
+    color:red;
+}
+.table-res td .deletecon:hover{
+    color:rosybrown;
+}
+
+  @media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+}
+
+
+@media only screen and (max-width:1200px){
+    .sidebar{
+        width: 15%;
+
+    }
+
+    .sidebar .sidebar-header .logo,
+    .sidebar-header img,
+    .sidebar li span:last-child
+    {
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li{
+    
+        display: flex;
+        justify-content: center;
+    
+    }
+    .main-content{
+        margin-left: 15%;
+    }
+    #sidebar-toggle:checked ~ .sidebar {
+        width:15%;
+    }
+  
+    
+    #sidebar-toggle:checked ~ .main-content{
+        margin-left: 15%;
+    }
+}
