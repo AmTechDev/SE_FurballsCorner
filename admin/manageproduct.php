@@ -2,8 +2,12 @@
 include('db.php');
 
 ?>
-<?php require_once 'pages/header.php'; ?>
-<?php require_once 'pages/sidebar.php'; ?>
+<?php 
+include('pages/header.php'); 
+?>
+<?php 
+include('pages/sidebar.php'); 
+?>
 <div class="main-content">
             <header>
                 <div class="searchwrapper">
@@ -23,46 +27,47 @@ include('db.php');
                 <table class="table table-bordered" >
                     <thead id="tableboot">
                          <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">Category</th>
-				            <th class="text-center">Image</th>
-				            <th class="text-center">Name</th>
-                            <th class="text-center">Description</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Stock</th>
-				            <th class="text-center">Edit</th>
-				            <th class="text-center">Delete</th>
+                         <th class="text-center">ID</th>
+                         <th class="text-center">Category</th>
+				         <th class="text-center">Name</th>
+                         <th class="text-center">Image</th>
+                         <th class="tet-center">Price</th>
+				         <th class="text-center">Description</th>
+				         <th class="text-center">Size</th>
+                         <th class="text-center">Material</th>
+                         <th class="text-center">Edit</th>
+				         <th class="text-center">Delete</th>
                         </tr>
                     </thead>
                      <tbody>
                          <?php
 
-                            $get_data = "SELECT * FROM products";
+                            $get_data = "SELECT * FROM product";
                             $run_data = mysqli_query($con,$get_data);
 
                             while($row = mysqli_fetch_array($run_data))
                             {   
                                 $prod_id = $row['prod_id'];
-                                $category_id = $row['category_id'];
-                                $image = $row['image'];
+                                $cat_id = $row['cat_id'];
                                 $prod_name = $row['prod_name'];
-                                $prod_description = $row['prod_description'];
+                                $prod_image = $row['prod_image'];
                                 $prod_price = $row['prod_price'];
-                                $prod_stock = $row['prod_stock'];
+                                $prod_desc = $row['prod_desc'];
+                                $prod_size = $row['prod_size'];
+                                $prod_material = $row['prod_material'];
 
-
-                                
 
                                 echo "
 
                                     <tr>
                                     <td class='text-center'>$prod_id</td>
-                                    <td class='text-center'>$category_id</td>
-                                    <td class='text-center'><img src='image/$image' style='width:50px; height:50px;'></td>
+                                    <td class='text-center'>$cat_id</td>
                                     <td class='text-center'>$prod_name</td>
-                                    <td class='text-center'>$prod_description</td>
+                                    <td class='text-center'><img src='images/$prod_image' style='width:50px; height:50px;'></td>
                                     <td class='text-center'>$prod_price</td>
-                                    <td class='text-center'>$prod_stock</td>
+                                    <td class='text-center'>$prod_desc</td>
+                                    <td class='text-center'>$prod_size</td>
+                                    <td class='text-center'>$prod_material</td>
                                     <td class='text-center'>
                                         <span>
                                             <a href='#'>
@@ -93,7 +98,7 @@ include('db.php');
                 </div>
                 </section>
 
-                                    <!---Add in modal---->
+                <!---------------------------Add modal----------------------------------------------->
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
@@ -103,45 +108,65 @@ include('db.php');
                         <div class="modal-content" >
                         <div class="modal-header" id="modal-head">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title text-center">Add Products</h4>
+                            <h4 class="modal-title text-center">Add Product</h4>
                         </div>
                         <div class="modal-body" id="body-modal">
                             <form action="prodadd.php" method="POST" enctype="multipart/form-data">
 
-
-                                <div class="form-group" id="forminput">
+                            <div class="form-group" id="forminput">
                                     <label>Category</label>
-                                    <select class="form-control" name="category_id">
-                                        <option value="">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                     </select>   
-                                </div>
-                                <div class="form-group" id="forminput">
-                                    <label>Image</label>
-                                    <input type="file" name="image" class="form-control" >
-                                </div>
+                                    <select class="form-control" name="cat_id" id="select_category">
+                                    <option value="">Select Category</option> 
+
+                                    <?php
+                                     $query=mysqli_query($con,"select * from category");
+                                     while($row=mysqli_fetch_array($query))
+                                     {?>
+                                     
+                                     <option value="<?php echo $row['cat_id'];?>"><?php echo $row['cat_name'];?></option>
+                                     <?php } 
+                                   // $get_data = "SELECT * FROM category";
+                                   // $run_data = mysqli_query($con,$get_data);
+        
+                                    //while($row = mysqli_fetch_array($run_data))
+                                   // {   
+                                    //    $category_id = $row['cat_id'];
+                                    //    echo "
+                                    //            <option value='".$row['cat_id']."' ".$selected.">".$row['cat_name']."</option>
+                                    //        ";
+                                   // }
+                                    ?>
+                      
+                                     </select>
+                            </div>
+
+
+                      
                                 <div class="form-group" id="forminput">
                                     <label>Name</label>
                                     <input type="text" name="prod_name" class="form-control" placeholder="Name of Product.....">
                                 </div>
+
                                 <div class="form-group" id="forminput">
-                                    <label>Description</label>
-                                    <input type="text" name="prod_description" class="form-control" placeholder="Description of product.....">
+                                    <label>Image</label>
+                                    <input type="file" name="prod_image" class="form-control" >
                                 </div>
                                 <div class="form-group" id="forminput">
                                     <label>Price</label>
-                                    <input type="number" name="prod_price" class="form-control" placeholder="price of product.....">
+                                    <input type="text" name="prod_price" class="form-control" placeholder="Price of Product.....">
                                 </div>
                                 <div class="form-group" id="forminput">
-                                    <label>Stocks</label>
-                                    <input type="number" name="prod_stock" class="form-control" placeholder="number of stocks.....">
+                                    <label>Description</label>
+                                    <input type="text" name="prod_desc" class="form-control" placeholder="Description of Product.....">
                                 </div>
-
-                                
+                                <div class="form-group" id="forminput">
+                                    <label>Size</label>
+                                    <input type="text" name="prod_size" class="form-control" placeholder="Size of Product.....">
+                                </div>
+                                <div class="form-group" id="forminput">
+                                    <label>Material</label>
+                                    <input type="text" name="prod_material" class="form-control" placeholder="Material of Product.....">
+                                </div>
                                 
                                 <input type="submit" name="submit" class="btn btn-info btn-large" value="Submit">
                                 
@@ -165,7 +190,7 @@ include('db.php');
                     <!-- Modal -->
                     <?php
 
-                    $get_data = "SELECT * FROM products";
+                    $get_data = "SELECT * FROM product";
                     $run_data = mysqli_query($con,$get_data);
 
                     while($row = mysqli_fetch_array($run_data))
@@ -202,70 +227,64 @@ include('db.php');
 
                     <?php
 
-                    $get_data = "SELECT * FROM products";
+                    $get_data = "SELECT * FROM product";
                     $run_data = mysqli_query($con,$get_data);
 
                     while($row = mysqli_fetch_array($run_data))
                     {
-                                $prod_id = $row['prod_id'];
-                                $category_id = $row['category_id'];
-                                $image = $row['image'];
-                                $prod_name = $row['prod_name'];
-                                $prod_description = $row['prod_description'];
-                                $prod_price = $row['prod_price'];
-                                $prod_stock = $row['prod_stock'];
-                        
+                        $prod_id = $row['prod_id'];
+                        $cat_id = $row['cat_id'];
+                        $prod_name = $row['prod_name'];
+                        $prod_image = $row['prod_image'];
+                        $prod_desc = $row['prod_desc'];
+                        $prod_size = $row['prod_size'];
+                        $prod_material = $row['prod_material'];
+                         
                         
                         echo "
 
                     <div id='edit$prod_id' class='modal fade' role='dialog'>
                     <div class='modal-dialog'>
-
                         <!-- Modal content-->
                         <div class='modal-content'>
                         <div class='modal-header'id='modal-head'>
                                 <button type='button' class='close' data-dismiss='modal'>&times;</button>
                                 <h4 class='modal-title text-center'>Edit your Data</h4> 
                         </div>
-
+                    
                         <div class='modal-body'>
                             <form action='prodedit.php?id=$prod_id' method='post' enctype='multipart/form-data'>
 
-                                <div class='form-group' id='forminput'>
-                                <label>Category</label>
-                                <select class='form-control' name='category_id'>
-                                    <option value=''>Select Category</options>
-                                    <option value='Options'>Accessories</options>
-                                    <option value='Options'>Clothes</options>
-                                    <option value='Options'>Foods</options>
-                                    <option value='Options'>Hygiene</options>
-                                     <option value='Options'>Toys</options>
-                                 </select>   
-                                </div>
-
-                                <div class='form-group' id='forminput'>
-                                    <label>Image</label>
-                                    <input type='file' name='prod_image' class='form-control' required>
-                                    <img src = 'images/$image' style='width:50px; height:50px'>
-                                </div>
+                                    <div class='form-group' id='forminput'>
+                                    <label>Category</label>
+                                    <select class='form-control' name='cat_id' id='select_category'>
+                                    <option value='0'>Select Category</option>
+                                    
+                                   
+                    
+                                    </select>
+                                     </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Name</label>
                                     <input type='text' name='prod_name' class='form-control' value='$prod_name'>
                                 </div>
+                                <div class='form-group' id='forminput'>
+                                    <label>Image</label>
+                                    <input type='file' name='cat_image' class='form-control' required>
+                                    <img src = 'images/$prod_image' style='width:50px; height:50px'>
+                                </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Description</label>
-                                    <input type='text' name='prod_description' class='form-control' value='$prod_description'>
+                                    <input type='text' name='prod_desc' class='form-control' value='$prod_desc'>
                                 </div>
                                 <div class='form-group'id='forminput'>
-                                    <label>Price</label>
-                                    <input type='number' name='prod_price' class='form-control' value='$prod_price'>
+                                    <label>Size</label>
+                                    <input type='text' name='prod_size' class='form-control' value='$prod_material'>
                                 </div>
                                 <div class='form-group'id='forminput'>
-                                    <label>Stock</label>
-                                    <input type='text' name='prod_stock' class='form-control' value='$prod_stock'>
+                                    <label>Material</label>
+                                    <input type='text' name='prod_material' class='form-control' value='$prod_material'>
                                 </div>
-                                
-                                
 
                                 
                         
@@ -289,4 +308,6 @@ include('db.php');
                     ?>
             </main>
         </div>
-        <?php require_once 'pages/footer.php'; ?>
+<?php 
+include('pages/footer.php'); 
+?>

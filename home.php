@@ -3,11 +3,13 @@ include_once 'components/header.php';
 ?>
 <?php 
 include('connect.php'); 
+include("functions.php");
+$user_data = check_login($con);
 ?>
-
 <div class="loader">
     <img src="assets/dualball.gif" alt="Loading..." />
 </div>
+
 <section class="section-main">
             <h2>...</h2>
 

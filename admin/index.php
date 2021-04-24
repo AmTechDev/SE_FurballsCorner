@@ -1,15 +1,8 @@
+
 <?php
-session_start(); 
-?>
-<?php
-  if(isset($_SESSION['user_id'])){
-    header('location: home.php');
-  }
-?>
-<?php
-include("connect.php");
-include("functions.php");
-if($_SERVER['REQUEST_METHOD'] == "POST")
+include("db.php");
+include("function.php");
+if(isset($_POST['login']))
 {
    
     $email = $_POST['email'];
@@ -18,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     if(!empty($email) && !empty($password) && !is_numeric($email))
     {
         
-        $query = "select * from users where email = '$email' limit 1";
+        $query = "select * from admin where email = '$email' limit 1";
         $result = mysqli_query($con,$query);
 
         if($result)
@@ -30,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		    if (password_verify($password, $data['password']))
                 {
 
-                    $_SESSION['user_id'] = $data['user_id'];
+                    $_SESSION['admin_id'] = $data['admin_id'];
                     header("Location: home.php");
                     die;
                 }
@@ -53,51 +46,40 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
      <link rel="shortcut icon" href="assets/fclogo.png"/>
      
      <meta name="viewport" content="width=device-width,user-scalable=no"/>
-     <meta
-      name="description"
-      content="Buy,Shop,Browse and Order Pet Products"
-    />
-    <meta
-      name="keywords"
-      content="Pet products, Dog Products, Furballs Corner, Furr Parent, Pet accessories, Pet Clothes, Pet Shop"
-    />
    
-    <title>Furballs Corner | Login </title>
+    <title>Furballs Corner | Admin Login </title>
 
 
     <!--Main CSS File -->
-    <link type="text/css" rel="stylesheet" href="css/mainstyle.css"/>
-    <link type="text/css" rel="stylesheet" href="css/logandreg.css"/>
+    <link type="text/css" rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <!-----------JSLOADER------------------>
-    <script src="js/main.js"></script>
+    <script src="js/scr.js"></script>
   </head>
   <body>
 
 <div class="loader">
     <img src="assets/dualball.gif" alt="Loading..." />
 </div>
-<form id="form-input" action="login.php" method="post">
+<form id="form-input" action="index.php" method="post">
     <fieldset>
-      <h2 class="form-title">Login</h2>
+      <h2 class="form-title">Admin Login</h2>
       <h3 class="form-subtitle">login to your account</h3>
       <input type="email" name="email" placeholder="Email" />
       <input type="password" minlength="6" name="password" placeholder="Password" />
       <div class="reset"><a href="recovery.php">Reset Password</a></div>
-      <input type="submit" name="submit" class="logintbn action-button" value="Login" />
+      <input type="submit" name="login" class="logintbn action-button" value="Login" />
       <div class="connect">
         <p>or connect with</p>
       </div>
       <div class="social-links">
         <button class="google-btn">Google Account</button>
       </div>
-      <div class="linking">
-        <p>Don't Have an account? <a href="register.php">Register here</a></p>
-      </div>
+  
     </fieldset>
 </form>
 <?php
-include('components/footer.php');
+include('pages/footer.php');
 ?>

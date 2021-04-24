@@ -44,6 +44,14 @@
                         </span>
                     </a>
                 </li>
+                <li>
+                    <a href="logout.php" title="Logout">
+                        <i class="fas fa-sign-out-alt" ></i>
+                        <span>
+                            Logout
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
         </div>

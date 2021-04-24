@@ -1,10 +1,10 @@
 <?php 
-include('components/header.php'); 
-?>
-<?php 
-include('components/navbar.php'); 
+include_once 'components/header.php'; 
 ?>
 
+<div class="loader">
+    <img src="assets/dualball.gif" alt="Loading..." />
+  </div>
 <div class="bag-view">
   <div class="bag-title">
     <h1>YOUR BAG</h1>

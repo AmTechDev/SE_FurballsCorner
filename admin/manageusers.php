@@ -2,8 +2,12 @@
 include('db.php');
 
 ?>
-<?php require_once 'pages/header.php'; ?>
-<?php require_once 'pages/sidebar.php'; ?>
+<?php 
+include('pages/header.php'); 
+?>
+<?php 
+include('pages/sidebar.php'); 
+?>
 <div class="main-content">
             <header>
                 <div class="searchwrapper">
@@ -23,44 +27,37 @@ include('db.php');
                 <table class="table table-bordered" >
                     <thead id="tableboot">
                          <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">First Name</th>
-				            <th class="text-center">Last Name</th>
-				            <th class="text-center">Email</th>
-                            <th class="text-center">Password</th>
-				            <th class="text-center">Edit</th>
-				            <th class="text-center">Delete</th>
+                         <th class="text-center">ID</th>
+				         <th class="text-center">Name</th>
+                         <th class="text-center">Image</th>
+				         <th class="text-center">Edit</th>
+				         <th class="text-center">Delete</th>
                         </tr>
                     </thead>
                      <tbody>
                          <?php
 
-                            $get_data = "SELECT * FROM users";
+                            $get_data = "SELECT * FROM product";
                             $run_data = mysqli_query($con,$get_data);
 
                             while($row = mysqli_fetch_array($run_data))
                             {   
-                                $id = $row['id'];
-                                $firstname = $row['firstname'];
-                                $lastname = $row['lastname'];
-                                $email = $row['email'];
-                                $password = $row['password'];
-
+                                $cat_id = $row['cat_id'];
+                                $cat_name = $row['cat_name'];
+                                $cat_image = $row['cat_image'];
 
                                 
 
                                 echo "
 
                                     <tr>
-                                    <td class='text-center'>$id</td>
-                                    <td class='text-center'>$firstname</td>
-                                    <td class='text-center'>$lastname</td>
-                                    <td class='text-center'>$email</td>
-                                    <td class='text-center'>$password</td>
+                                    <td class='text-center'>$cat_id</td>
+                                    <td class='text-center'>$cat_name</td>
+                                    <td class='text-center'><img src='images/$cat_image' style='width:50px; height:50px;'></td>
                                     <td class='text-center'>
                                         <span>
                                             <a href='#'>
-                                                <i class='fa fa-edit editcon' data-toggle='modal' data-target='#edit$id' style='' aria-hidden='true'></i>
+                                                <i class='fa fa-edit editcon' data-toggle='modal' data-target='#edit$cat_id' style='' aria-hidden='true'></i>
                                             </a>
                                         </span>
                                         
@@ -68,7 +65,7 @@ include('db.php');
                                     <td class='text-center'>
                                         <span>
                                             <a href='#'>
-                                                <i class='fa fa-trash deletecon' data-toggle='modal' data-target='#$id' style='' aria-hidden='true'></i>
+                                                <i class='fa fa-trash deletecon' data-toggle='modal' data-target='#$cat_id' style='' aria-hidden='true'></i>
                                             </a>
                                         </span>
                                         
@@ -97,45 +94,20 @@ include('db.php');
                         <div class="modal-content" >
                         <div class="modal-header" id="modal-head">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title text-center">Add Users</h4>
+                            <h4 class="modal-title text-center">Add Category</h4>
                         </div>
                         <div class="modal-body" id="body-modal">
-                            <form action="prodadd.php" method="POST" enctype="multipart/form-data">
-
-
-                                <div class="form-group" id="forminput">
-                                    <label>Category</label>
-                                    <select class="form-control" name="category_id">
-                                        <option value="">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                        <option value="Options">Select Category</options>
-                                     </select>   
-                                </div>
-                                <div class="form-group" id="forminput">
-                                    <label>Image</label>
-                                    <input type="file" name="image" class="form-control" >
-                                </div>
+                            <form action="add.php" method="POST" enctype="multipart/form-data">
+                                
                                 <div class="form-group" id="forminput">
                                     <label>Name</label>
-                                    <input type="text" name="prod_name" class="form-control" placeholder="Name of Product.....">
-                                </div>
-                                <div class="form-group" id="forminput">
-                                    <label>Description</label>
-                                    <input type="text" name="prod_description" class="form-control" placeholder="Description of product.....">
-                                </div>
-                                <div class="form-group" id="forminput">
-                                    <label>Price</label>
-                                    <input type="number" name="prod_price" class="form-control" placeholder="price of product.....">
-                                </div>
-                                <div class="form-group" id="forminput">
-                                    <label>Stocks</label>
-                                    <input type="number" name="prod_stock" class="form-control" placeholder="number of stocks.....">
+                                    <input type="text" name="cat_name" class="form-control" placeholder="Name of category.....">
                                 </div>
 
-                                
+                                <div class="form-group" id="forminput">
+                                    <label>Image</label>
+                                    <input type="file" name="cat_image" class="form-control" >
+                                </div>
                                 
                                 <input type="submit" name="submit" class="btn btn-info btn-large" value="Submit">
                                 
@@ -159,15 +131,15 @@ include('db.php');
                     <!-- Modal -->
                     <?php
 
-                    $get_data = "SELECT * FROM products";
+                    $get_data = "SELECT * FROM category";
                     $run_data = mysqli_query($con,$get_data);
 
                     while($row = mysqli_fetch_array($run_data))
                     {
-                        $prod_id = $row['prod_id'];
+                        $cat_id = $row['cat_id'];
                         echo "
 
-                    <div id='$id' class='modal fade' role='dialog'>
+                    <div id='$cat_id' class='modal fade' role='dialog'>
                     <div class='modal-dialog'>
 
                         <!-- Modal content-->
@@ -177,7 +149,7 @@ include('db.php');
                             <h4 class='modal-title text-center'>Are you want to sure?</h4>
                         </div>
                         <div class='modal-body'>
-                            <a href='proddelete.php?id=$prod_id' class='btn btn-danger' style='margin-left:250px'>Delete</a>
+                            <a href='delete.php?id=$cat_id' class='btn btn-danger' style='margin-left:250px'>Delete</a>
                         </div>
                         
                         </div>
@@ -196,23 +168,19 @@ include('db.php');
 
                     <?php
 
-                    $get_data = "SELECT * FROM products";
+                    $get_data = "SELECT * FROM category";
                     $run_data = mysqli_query($con,$get_data);
 
                     while($row = mysqli_fetch_array($run_data))
                     {
-                                $prod_id = $row['prod_id'];
-                                $category_id = $row['category_id'];
-                                $image = $row['image'];
-                                $prod_name = $row['prod_name'];
-                                $prod_description = $row['prod_description'];
-                                $prod_price = $row['prod_price'];
-                                $prod_stock = $row['prod_stock'];
+                        $cat_id = $row['cat_id'];
+                        $cat_name = $row['cat_name'];
+                        $cat_image = $row['cat_image'];
                         
                         
                         echo "
 
-                    <div id='edit$prod_id' class='modal fade' role='dialog'>
+                    <div id='edit$cat_id' class='modal fade' role='dialog'>
                     <div class='modal-dialog'>
 
                         <!-- Modal content-->
@@ -223,43 +191,17 @@ include('db.php');
                         </div>
 
                         <div class='modal-body'>
-                            <form action='prodedit.php?id=$prod_id' method='post' enctype='multipart/form-data'>
+                            <form action='edit.php?id=$cat_id' method='post' enctype='multipart/form-data'>
 
-                                <div class='form-group' id='forminput'>
-                                <label>Category</label>
-                                <select class='form-control' name='category_id'>
-                                    <option value=''>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                    <option value='Options'>Select Category</options>
-                                     <option value='Options'>Select Category</options>
-                                 </select>   
-                                </div>
-
-                                <div class='form-group' id='forminput'>
-                                    <label>Image</label>
-                                    <input type='file' name='image' class='form-control' required>
-                                    <img src = 'images/$image' style='width:50px; height:50px'>
-                                </div>
                                 <div class='form-group'id='forminput'>
                                     <label>Name</label>
-                                    <input type='text' name='name' class='form-control' value='$name'>
+                                    <input type='text' name='cat_name' class='form-control' value='$cat_name'>
                                 </div>
-                                <div class='form-group'id='forminput'>
-                                    <label>Description</label>
-                                    <input type='text' name='description' class='form-control' value='$description'>
+                                <div class='form-group' id='forminput'>
+                                    <label>Image</label>
+                                    <input type='file' name='cat_image' class='form-control' required>
+                                    <img src = 'images/$cat_image' style='width:50px; height:50px'>
                                 </div>
-                                <div class='form-group'id='forminput'>
-                                    <label>Price</label>
-                                    <input type='number' name='price' class='form-control' value='$price'>
-                                </div>
-                                <div class='form-group'id='forminput'>
-                                    <label>Stock</label>
-                                    <input type='text' name='stock' class='form-control' value='$stock'>
-                                </div>
-                                
-                                
 
                                 
                         
@@ -283,4 +225,6 @@ include('db.php');
                     ?>
             </main>
         </div>
-        <?php require_once 'pages/footer.php'; ?>
+<?php 
+include('pages/footer.php'); 
+?>

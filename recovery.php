@@ -1,7 +1,9 @@
 <?php 
-include('components/header.php'); 
+include('header.php'); 
 ?>
-
+<div class="loader">
+    <img src="assets/dualball.gif" alt="Loading..." />
+  </div>
 <form id="form-input">
     <fieldset>
       <h2 class="form-title">Reset Password</h2>

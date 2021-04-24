@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect('localhost','root','','furballsdb');
+$con = mysqli_connect('localhost','root','','fcdb');
 if($con){
 	
 }else{

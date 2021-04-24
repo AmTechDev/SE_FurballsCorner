@@ -2,8 +2,12 @@
 include('db.php');
 
 ?>
-<?php require_once 'pages/header.php'; ?>
-<?php require_once 'pages/sidebar.php'; ?> 
+<?php 
+include('pages/header.php'); 
+?>
+<?php 
+include('pages/sidebar.php'); 
+?>
 <div class="main-content">
             <header>
                 <div class="searchwrapper">
@@ -80,7 +84,7 @@ include('db.php');
                 </div>
                 </section>
 
-                                    <!---Add in modal---->
+                <!----------------------------------Add in modal------------------------------------------>
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
@@ -221,4 +225,6 @@ include('db.php');
                     ?>
             </main>
         </div>
-<?php require_once 'pages/footer.php'; ?>
+<?php 
+include('pages/footer.php'); 
+?>
