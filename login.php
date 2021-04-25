@@ -37,10 +37,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             }
         }
         
-        echo "Wrong email or password!";
+        echo '<div class="error"><p>Email or Password is incorrect<p><div>';
     }else
     {
-        echo "Please enter some valid information!";
+        echo '<div class="error"><p>Please enter some valid information!<p><div>';
     }
 }
 ?>

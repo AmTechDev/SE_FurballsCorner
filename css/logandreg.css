@@ -10,5 +10,16 @@ body{
     outline: none;
     color: royalblue;
 }
+.error{
+  
+  text-align: center;
+  top:20rem;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  padding-top:5px ;
+  height: 2rem;
+  background-color: tomato;
+}
 
 

@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
     }else 
     {
-        echo "Please enter some valid information!";
+        echo '<div class="error"><p>Please enter some valid information!<p><div>';
     }
 }
 
