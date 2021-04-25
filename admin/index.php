@@ -1,4 +1,3 @@
-
 <?php
 include("db.php");
 include("function.php");
@@ -30,10 +29,10 @@ if(isset($_POST['login']))
             }
         }
         
-        echo "Wrong email or password!";
+        echo '<div class="error"><p>Email or Password is incorrect<p><div>';
     }else
     {
-        echo "Please enter some valid information!";
+        echo '<div class="error"><p>Please Enter a valid information!<p><div>';
     }
 }
 ?>
@@ -51,7 +50,7 @@ if(isset($_POST['login']))
 
 
     <!--Main CSS File -->
-    <link type="text/css" rel="stylesheet" href="css/login.css"/>
+    <link type="text/css" rel="stylesheet" href="css/loginstyle.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -69,17 +68,12 @@ if(isset($_POST['login']))
       <h3 class="form-subtitle">login to your account</h3>
       <input type="email" name="email" placeholder="Email" />
       <input type="password" minlength="6" name="password" placeholder="Password" />
-      <div class="reset"><a href="recovery.php">Reset Password</a></div>
+      <div class="reset"><a href="resetpassword.php">Reset Password</a></div>
       <input type="submit" name="login" class="logintbn action-button" value="Login" />
-      <div class="connect">
-        <p>or connect with</p>
-      </div>
-      <div class="social-links">
-        <button class="google-btn">Google Account</button>
-      </div>
+    
   
     </fieldset>
 </form>
-<?php
-include('pages/footer.php');
-?>
+
+</body>
+</html>

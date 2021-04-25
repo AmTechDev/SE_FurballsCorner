@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,17 +7,16 @@
      
      <meta name="viewport" content="width=device-width,user-scalable=no"/>
    
-    <title>Furballs Corner | Reset Password </title>
+    <title>Furballs Corner | Admin Reset Password </title>
 
 
     <!--Main CSS File -->
-    <link type="text/css" rel="stylesheet" href="css/mainstyle.css"/>
-    <link type="text/css" rel="stylesheet" href="css/logandreg.css"/>
+    <link type="text/css" rel="stylesheet" href="css/loginstyle.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <!-----------JSLOADER------------------>
-    <script src="js/main.js"></script>
+    <script src="js/scr.js"></script>
   </head>
   <body>
 <div class="loader">
@@ -32,5 +30,6 @@
       <input type="submit" name="next" class="next action-button" value="Send Link" />
     </fieldset>
   </form>
-</body>
+
+  </body>
 </html>

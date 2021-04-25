@@ -18,7 +18,7 @@ include('pages/sidebar.php');
                     
                 </div>
                 
-                        <h3>Welcome</h3>
+                  
                 
             </header>
             <main>
